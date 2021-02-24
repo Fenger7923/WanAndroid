@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.activity.MainActivity">
+
+    <RadioGroup
+        android:id="@id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#0FF0F0"
+        android:gravity="bottom"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.fenger.wanandroid.view.ColorTrackTextView
+            android:id="@+id/main_tab"
+            style="@style/tab_button_style"
+            android:text="@string/main_tab" />
+
+        <com.fenger.wanandroid.view.ColorTrackTextView
+            android:id="@+id/find_tab"
+            style="@style/tab_button_style"
+            android:text="@string/find_tab" />
+
+        <com.fenger.wanandroid.view.ColorTrackTextView
+            android:id="@+id/news_tab"
+            style="@style/tab_button_style"
+            android:text="@string/news_tab" />
+
+        <com.fenger.wanandroid.view.ColorTrackTextView
+            android:id="@+id/message_tab"
+            style="@style/tab_button_style"
+            android:text="@string/message_tab" />
+
+        <com.fenger.wanandroid.view.ColorTrackTextView
+            android:id="@+id/life_tab"
+            style="@style/tab_button_style"
+            android:text="@string/life_tab" />
+    </RadioGroup>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:layout_constraintTop_toBottomOf="@+id/tabs"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
