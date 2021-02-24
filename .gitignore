@@ -13,3 +13,16 @@
 .externalNativeBuild
 .cxx
 local.properties
+/app/.gitignore
+/.idea/sonarlint/issuestore/1/d/1de7caf6010eab8c5ea2281e22b47de8a12a2e9f
+/.idea/sonarlint/issuestore/2/d/2d44372dd590394d09457a3b18cb75c0cb214ff5
+/.idea/sonarlint/issuestore/5/1/51e1c5d383dfaa35e0e7e5873a0a99355a86880f
+/.idea/sonarlint/issuestore/a/d/adcee0fa779651dc655ade87f9ed0feb3a3de544
+/.idea/compiler.xml
+/.idea/sonarlint/issuestore/e/2/e20b83b8709706aaa3c9081805111cbda524b492
+/.idea/sonarlint/issuestore/f/4/f4a01d6a4fcb971362ec00a83903fd3902f52164
+/.idea/gradle.xml
+/.idea/sonarlint/issuestore/index.pb
+/.idea/jarRepositories.xml
+/.idea/misc.xml
+/.idea/vcs.xml
