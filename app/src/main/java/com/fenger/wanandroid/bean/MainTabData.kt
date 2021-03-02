@@ -34,7 +34,8 @@ data class MainTabData (
             var visible: Int,
             var niceDate: String,
             var courseId: Int,
-            var collect: Boolean
+            var collect: Boolean,
+            var shareUser: String
         )
     }
 }

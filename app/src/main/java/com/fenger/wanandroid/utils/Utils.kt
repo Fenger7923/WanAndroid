@@ -20,10 +20,5 @@ class Utils {
 
             imageView.setImageBitmap(bitmap)
         }
-
-        @JvmStatic
-        fun setUrl2Drawable(url: String) {
-
-        }
     }
 }

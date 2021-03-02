@@ -47,7 +47,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         viewpager_fragment.adapter = FragmentAdapter(supportFragmentManager, fragments)
 
         // 默认一进来加载的页面
-        currentItem(2)
+        currentItem(0)
 
         /**
          * 这里有一个问题需要注意
@@ -56,7 +56,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
          */
         viewpager_fragment.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-                 Log.e(TAG, "position --> $position positionOffset --> $positionOffset");
+                 Log.e(TAG, "position --> $position positionOffset --> $positionOffset")
                 if (positionOffset > 0) {
                     // 获取左边
                     val left = rb[position]
@@ -105,16 +105,5 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         // 选中的项目变成红色
         rb[item].setDirection(ColorTrackTextView.Direction.RIGHT_TO_LEFT)
         rb[item].setProgress(1f)
-    }
-
-    private fun getMainTabData() {
-        RetrofitHelper.retrofitService.getMainTabList(0)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                it.data.toString()
-            }, {
-                it.toString()
-            })
     }
 }

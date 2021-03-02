@@ -17,14 +17,22 @@ interface RetrofitService {
      * 首页数据
      * http://www.wanandroid.com/article/list/0/json
      * @param page page
+     * @return MainTabData
      */
     @GET("/article/list/{page}/json")
     fun getMainTabList(@Path("page") page: Int): Observable<MainTabData>
 
     /**
      * 首页Banner
-     * @return BannerResponse
+     * @return BannerData
      */
     @GET("/banner/json")
     fun getBanner(): Observable<BannerData>
+
+    /**
+     * 常用网站
+     * @return
+     */
+    @GET("friend/json")
+    fun getFriend(): Observable<BannerData>
 }
