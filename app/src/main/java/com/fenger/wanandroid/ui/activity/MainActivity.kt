@@ -27,10 +27,10 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     }
     private lateinit var fragments: List<Fragment>
     private lateinit var rb: Array<ColorTrackTextView>
+    override fun setLayoutId(): Int = R.layout.activity_main
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
         rb = arrayOf(main_tab, find_tab, news_tab, message_tab, life_tab)
 
         main_tab.setOnClickListener(this)

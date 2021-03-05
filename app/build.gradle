@@ -50,5 +50,6 @@ dependencies {
     implementation 'io.reactivex:rxandroid:1.1.0' // rxAndroid
     implementation 'com.github.bumptech.glide:glide:3.7.0' // glide 图片加载
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0' // 下拉刷新组件
+    implementation 'com.just.agentweb:agentweb:4.1.4' // webView AgentWeb
 
 }

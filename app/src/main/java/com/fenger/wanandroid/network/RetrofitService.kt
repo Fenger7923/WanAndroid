@@ -2,6 +2,7 @@ package com.fenger.wanandroid.network
 
 import com.fenger.wanandroid.bean.BannerData
 import com.fenger.wanandroid.bean.MainTabData
+import com.fenger.wanandroid.bean.TreeListData
 import retrofit2.http.GET
 import retrofit2.http.Path
 import rx.Observable
@@ -30,9 +31,9 @@ interface RetrofitService {
     fun getBanner(): Observable<BannerData>
 
     /**
-     * 常用网站
-     * @return
+     * 知识体系
+     * @return TreeListData
      */
-    @GET("friend/json")
-    fun getFriend(): Observable<BannerData>
+    @GET("/tree/json")
+    fun getTypeTreeList(): Observable<TreeListData>
 }
