@@ -12,19 +12,11 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"/>
 
-<!--    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
-<!--        android:id="@+id/article_swipe"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/banner_view">-->
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/article_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:listitem="@layout/item_article"
             app:layout_constraintTop_toBottomOf="@id/banner_view"/>
-<!--    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,11 +19,11 @@ import com.fenger.wanandroid.ui.activity.WebViewActivity.Companion.JUMP_URL
 class RecyclerViewAdapter(private val datas: List<MainTabData.Data.Datas>) :
     RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val author: TextView = view.findViewById(R.id.homeItemAuthor)
-        val title: TextView = view.findViewById(R.id.homeItemTitle)
-        val type: TextView = view.findViewById(R.id.homeItemType)
-        val date: TextView = view.findViewById(R.id.homeItemDate)
-        val isFav: ImageView = view.findViewById(R.id.homeItemLike)
+        val author: TextView = view.findViewById(R.id.home_item_author)
+        val title: TextView = view.findViewById(R.id.home_item_title)
+        val type: TextView = view.findViewById(R.id.home_item_type)
+        val date: TextView = view.findViewById(R.id.home_item_date)
+        val isFav: ImageView = view.findViewById(R.id.home_item_like)
         var url: String = ""
     }
 

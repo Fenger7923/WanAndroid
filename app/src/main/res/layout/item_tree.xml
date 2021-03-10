@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tree_layout"
+    android:layout_width="@dimen/dp_95"
+    android:layout_height="@dimen/dp_35"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:background="@color/gray"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/tree_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp_14"
+        tool:text="体系名称"/>
+
+</LinearLayout>

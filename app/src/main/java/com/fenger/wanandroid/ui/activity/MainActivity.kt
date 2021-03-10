@@ -5,16 +5,14 @@ import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
-import com.fenger.wanandroid.base.BaseActivity
 import com.fenger.wanandroid.R
 import com.fenger.wanandroid.adapter.FragmentAdapter
-import com.fenger.wanandroid.network.RetrofitHelper
+import com.fenger.wanandroid.base.BaseActivity
 import com.fenger.wanandroid.ui.fragment.MainFragment
 import com.fenger.wanandroid.ui.fragment.MyFragment
+import com.fenger.wanandroid.ui.fragment.TreeFragment
 import com.fenger.wanandroid.view.ColorTrackTextView
 import kotlinx.android.synthetic.main.activity_main.*
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
 
 /**
  * @author fengerzhang
@@ -43,7 +41,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun initViewPager() {
-        fragments = listOf(MainFragment(), MyFragment(), MyFragment(), MyFragment(), MyFragment())
+        fragments = listOf(MainFragment(), TreeFragment(), MyFragment(), MyFragment(), MyFragment())
         viewpager_fragment.adapter = FragmentAdapter(supportFragmentManager, fragments)
 
         // 默认一进来加载的页面

@@ -23,7 +23,7 @@
         <com.fenger.wanandroid.view.ColorTrackTextView
             android:id="@+id/find_tab"
             style="@style/tab_button_style"
-            android:text="@string/find_tab" />
+            android:text="@string/tree_tab" />
 
         <com.fenger.wanandroid.view.ColorTrackTextView
             android:id="@+id/news_tab"

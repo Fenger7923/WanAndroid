@@ -27,7 +27,7 @@ class MainFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_main, container, false)
-        init()
+        initView()
         return view
     }
 
@@ -35,10 +35,6 @@ class MainFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
 
         // TODO 分页加载
-    }
-
-    private fun init() {
-        initView()
     }
 
     private fun initView() {

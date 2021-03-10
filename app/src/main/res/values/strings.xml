@@ -3,7 +3,7 @@
     <string name="app_name">WanAndroid</string>
 
     <string name="main_tab">首页</string>
-    <string name="find_tab">发现</string>
+    <string name="tree_tab">体系</string>
     <string name="news_tab">新鲜</string>
     <string name="message_tab">消息</string>
     <string name="life_tab">我的</string>
