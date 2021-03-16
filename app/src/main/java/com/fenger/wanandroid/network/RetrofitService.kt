@@ -1,10 +1,11 @@
 package com.fenger.wanandroid.network
 
 import com.fenger.wanandroid.bean.BannerData
-import com.fenger.wanandroid.bean.MainTabData
+import com.fenger.wanandroid.bean.ArticleListData
 import com.fenger.wanandroid.bean.TreeListData
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 import rx.Observable
 
 /**
@@ -21,7 +22,7 @@ interface RetrofitService {
      * @return MainTabData
      */
     @GET("/article/list/{page}/json")
-    fun getMainTabList(@Path("page") page: Int): Observable<MainTabData>
+    fun getMainTabList(@Path("page") page: Int): Observable<ArticleListData>
 
     /**
      * 首页Banner
@@ -36,4 +37,12 @@ interface RetrofitService {
      */
     @GET("/tree/json")
     fun getTypeTreeList(): Observable<TreeListData>
+
+    /**
+     * 知识体系下的文章
+     * @param page page
+     * @param cid cid
+     */
+    @GET("/article/list/{page}/json")
+    fun getArticleList(@Path("page") page: Int, @Query("cid") cid: Int): Observable<ArticleListData>
 }

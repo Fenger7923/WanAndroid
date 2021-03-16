@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tree_list"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        app:layout_constraintLeft_toLeftOf="parent"
         tools:listitem="@layout/item_tree" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.fenger.wanandroid.view.FlowLayout
+        android:id="@+id/trees_flow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/tree_list"
+        android:padding="@dimen/dp_20"
+        tools:listitem="@layout/item_flow" />
+</RelativeLayout>

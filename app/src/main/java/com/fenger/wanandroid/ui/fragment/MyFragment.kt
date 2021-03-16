@@ -7,5 +7,6 @@ import com.fenger.wanandroid.base.BaseFragment
  * @date 2/1/21 9:35 PM
  */
 class MyFragment : BaseFragment() {
+    override fun initView() = Unit
 
 }

@@ -4,7 +4,7 @@ package com.fenger.wanandroid.bean
  * @author fengerzhang
  * @date 2/1/21 5:43 PM
  */
-data class MainTabData (
+data class ArticleListData (
     var errorCode: Int,
     var errorMsg: String?,
     var data: Data

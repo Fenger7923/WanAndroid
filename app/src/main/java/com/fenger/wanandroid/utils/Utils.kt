@@ -1,6 +1,7 @@
 package com.fenger.wanandroid.utils
 
 import android.content.Context
+import android.content.res.Resources
 import android.util.TypedValue
 import android.widget.ImageView
 import com.bumptech.glide.Glide
@@ -22,7 +23,7 @@ object Utils {
     }
 
     @JvmStatic
-    fun sp2px(sp: Int, context: Context): Float {
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp.toFloat(), context.resources.displayMetrics)
+    fun dp2px(sp: Int): Float {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp.toFloat(), Resources.getSystem().displayMetrics)
     }
 }

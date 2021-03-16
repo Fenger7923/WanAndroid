@@ -4,15 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.fenger.wanandroid.R
 import com.fenger.wanandroid.adapter.RecyclerViewAdapter
 import com.fenger.wanandroid.base.BaseFragment
 import com.fenger.wanandroid.bean.BannerData
-import com.fenger.wanandroid.bean.MainTabData
+import com.fenger.wanandroid.bean.ArticleListData
 import com.fenger.wanandroid.network.RetrofitHelper
 import kotlinx.android.synthetic.main.fragment_main.*
 import rx.android.schedulers.AndroidSchedulers
@@ -37,7 +35,7 @@ class MainFragment : BaseFragment() {
         // TODO 分页加载
     }
 
-    private fun initView() {
+    override fun initView() {
         RetrofitHelper.retrofitService.getBanner()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -67,7 +65,7 @@ class MainFragment : BaseFragment() {
         }
     }
 
-    private fun initArticleList(result: MainTabData) {
+    private fun initArticleList(result: ArticleListData) {
         if (result.errorCode != 0) {
             return
         }

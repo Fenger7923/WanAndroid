@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.fenger.wanandroid.R
-import com.fenger.wanandroid.bean.MainTabData
+import com.fenger.wanandroid.bean.ArticleListData
 import com.fenger.wanandroid.ui.activity.WebViewActivity
 import com.fenger.wanandroid.ui.activity.WebViewActivity.Companion.JUMP_URL
 
@@ -16,7 +16,7 @@ import com.fenger.wanandroid.ui.activity.WebViewActivity.Companion.JUMP_URL
  * @author fengerzhang
  * @date 3/1/21 4:14 PM
  */
-class RecyclerViewAdapter(private val datas: List<MainTabData.Data.Datas>) :
+class RecyclerViewAdapter(private val datas: List<ArticleListData.Data.Datas>) :
     RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val author: TextView = view.findViewById(R.id.home_item_author)
