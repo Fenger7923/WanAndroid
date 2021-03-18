@@ -12,10 +12,19 @@
         tools:listitem="@layout/item_tree" />
 
     <com.fenger.wanandroid.view.FlowLayout
-        android:id="@+id/trees_flow"
+        android:id="@+id/tree_flow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/tree_list"
         android:padding="@dimen/dp_20"
         tools:listitem="@layout/item_flow" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tree_article_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/tree_list"
+        android:visibility="gone"
+        tools:visibility="visible"
+        tools:listitem="@layout/item_article"/>
 </RelativeLayout>

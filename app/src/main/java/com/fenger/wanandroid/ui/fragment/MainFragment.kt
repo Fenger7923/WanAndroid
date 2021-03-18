@@ -29,7 +29,6 @@ class MainFragment : BaseFragment() {
 
     private var isLoading = false
     private var articleListData: MutableList<ArticleListData.Data.Datas> = mutableListOf()
-
     private var curPage = 0
     private var totalPage = 0
 
@@ -107,8 +106,7 @@ class MainFragment : BaseFragment() {
             totalPage = result.data.pageCount - 1
         }
 
-        val mainData = result.data.datas
-        mainData?.forEach {
+        result.data.datas?.forEach {
             articleListData.add(it)
         }
 
