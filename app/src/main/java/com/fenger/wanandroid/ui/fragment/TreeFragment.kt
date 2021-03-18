@@ -48,9 +48,7 @@ class TreeFragment : BaseFragment() {
 
         firstLvData = result.data
         if (!firstLvData.isNullOrEmpty()) {
-            tree_list.layoutManager = LinearLayoutManager(context).apply {
-                stackFromEnd = true
-            }
+            tree_list.layoutManager = LinearLayoutManager(context)
 
             tree_list.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             val adapter = TreeListAdapter(firstLvData)

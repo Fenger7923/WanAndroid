@@ -12,7 +12,12 @@ import com.fenger.wanandroid.ui.fragment.MainFragment
 import com.fenger.wanandroid.ui.fragment.MyFragment
 import com.fenger.wanandroid.ui.fragment.TreeFragment
 import com.fenger.wanandroid.view.ColorTrackTextView
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.find_tab
+import kotlinx.android.synthetic.main.activity_main.life_tab
+import kotlinx.android.synthetic.main.activity_main.main_tab
+import kotlinx.android.synthetic.main.activity_main.message_tab
+import kotlinx.android.synthetic.main.activity_main.news_tab
+import kotlinx.android.synthetic.main.activity_main.viewpager_fragment
 
 /**
  * @author fengerzhang
