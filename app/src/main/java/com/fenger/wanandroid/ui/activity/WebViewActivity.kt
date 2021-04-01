@@ -20,6 +20,7 @@ class WebViewActivity : BaseActivity() {
     companion object {
         const val JUMP_URL = "jump_url"
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         var url = intent.getStringExtra(JUMP_URL)

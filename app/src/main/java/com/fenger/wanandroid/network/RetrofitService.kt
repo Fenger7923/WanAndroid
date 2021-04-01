@@ -3,7 +3,9 @@ package com.fenger.wanandroid.network
 import com.fenger.wanandroid.bean.BannerData
 import com.fenger.wanandroid.bean.ArticleListData
 import com.fenger.wanandroid.bean.TreeListData
+import com.fenger.wanandroid.bean.UserInfoData
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 import rx.Observable
@@ -45,4 +47,12 @@ interface RetrofitService {
      */
     @GET("/article/list/{page}/json")
     fun getArticleList(@Path("page") page: Int, @Query("cid") cid: Int): Observable<ArticleListData>
+
+    /**
+     * 登陆
+     * @param username username
+     * @param password password
+     */
+    @POST("user/login")
+    fun login(@Query("username") username: String, @Query("password") password: String): Observable<UserInfoData>
 }

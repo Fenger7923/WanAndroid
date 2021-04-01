@@ -3,11 +3,13 @@ package com.fenger.wanandroid.ui.activity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.fragment.app.Fragment
+import android.widget.Toast
 import androidx.viewpager.widget.ViewPager
 import com.fenger.wanandroid.R
 import com.fenger.wanandroid.adapter.FragmentAdapter
 import com.fenger.wanandroid.base.BaseActivity
+import com.fenger.wanandroid.utils.User
+import com.fenger.wanandroid.network.RetrofitHelper
 import com.fenger.wanandroid.ui.fragment.MainFragment
 import com.fenger.wanandroid.ui.fragment.MyFragment
 import com.fenger.wanandroid.ui.fragment.TreeFragment
@@ -18,6 +20,8 @@ import kotlinx.android.synthetic.main.activity_main.main_tab
 import kotlinx.android.synthetic.main.activity_main.message_tab
 import kotlinx.android.synthetic.main.activity_main.news_tab
 import kotlinx.android.synthetic.main.activity_main.viewpager_fragment
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
 
 /**
  * @author fengerzhang
@@ -28,7 +32,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     companion object {
        private const val TAG = "MainActivity"
     }
-    private lateinit var fragments: List<Fragment>
+
     private lateinit var rb: Array<ColorTrackTextView>
     override fun setLayoutId(): Int = R.layout.activity_main
 
@@ -43,10 +47,12 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         life_tab.setOnClickListener(this)
 
         initViewPager()
+
+        initUserInfo()
     }
 
     private fun initViewPager() {
-        fragments = listOf(MainFragment(), TreeFragment(), MyFragment(), MyFragment(), MyFragment())
+        val fragments = listOf(MainFragment(), TreeFragment(), MyFragment(), MyFragment(), MyFragment())
         viewpager_fragment.adapter = FragmentAdapter(supportFragmentManager, fragments)
 
         // 默认一进来加载的页面
@@ -83,6 +89,25 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
         })
     }
+
+    private fun initUserInfo() {
+        val username = "fengerzzz"
+        val password = "1234567"
+        RetrofitHelper.retrofitService.login(username, password)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                if (it.errorCode != 0) {
+                    Toast.makeText(this, it.errorMsg, Toast.LENGTH_SHORT).show()
+                } else {
+                    User.setUser(it)
+                }
+            }, {
+                it.toString()
+            })
+    }
+
+
 
     override fun onClick(v: View) {
         when (v.id) {

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/ll_go_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp_40"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="@dimen/dp_15"
+            android:layout_height="@dimen/dp_15"
+            android:rotation="0"
+            android:visibility="invisible"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_next"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            android:textSize="@dimen/sp_12"
+            android:textColor="@color/blue"
+            android:text="@string/to_register"/>
+
+        <ImageView
+            android:layout_width="@dimen/dp_15"
+            android:layout_height="@dimen/dp_15"
+            android:rotation="180"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_next"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/piv_login_account"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_44"
+        android:layout_marginStart="@dimen/dp_60"
+        android:layout_marginTop="@dimen/dp_100"
+        android:layout_marginEnd="@dimen/dp_60"
+        android:hint="@string/enter_username"
+        android:autofillHints="username"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/piv_login_password"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_44"
+        android:layout_below="@+id/piv_login_account"
+        android:layout_marginStart="@dimen/dp_60"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginEnd="@dimen/dp_60"
+        android:hint="@string/enter_password"
+        android:autofillHints="password"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/sv_login"
+        style="@style/ButtonMain"
+        android:background="@drawable/button_round_shape"
+        android:layout_below="@+id/piv_login_password"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="60dp"
+        android:text="@string/login"/>
+
+</RelativeLayout>

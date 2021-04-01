@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gains_gray">#FFDCDCDC</color>
     <color name="gray">#FFBEBEBE</color>
+    <color name="blue">#4282f4</color>
+    <color name="red">#f86734</color>
+    <color name="ripple_dark">#11000000</color>
 </resources>
