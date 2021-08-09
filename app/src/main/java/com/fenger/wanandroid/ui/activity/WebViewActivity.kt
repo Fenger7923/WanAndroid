@@ -1,12 +1,10 @@
 package com.fenger.wanandroid.ui.activity
 
 import android.os.Bundle
-import android.widget.LinearLayout
 import android.widget.Toast
 import com.fenger.wanandroid.R
 import com.fenger.wanandroid.base.BaseActivity
 import com.fenger.wanandroid.constants.Constant
-import com.just.agentweb.AgentWeb
 import kotlinx.android.synthetic.main.activity_webview.web_view
 
 
@@ -28,11 +26,6 @@ class WebViewActivity : BaseActivity() {
             Toast.makeText(this, "Page is not found", Toast.LENGTH_SHORT).show()
             url = Constant.REQUEST_BASE_URL
         }
-        AgentWeb.with(this)
-                .setAgentWebParent(web_view, LinearLayout.LayoutParams(-1, -1))
-                .useDefaultIndicator()
-                .createAgentWeb()
-                .ready()
-                .go(url)
+        web_view.loadUrl(url)
     }
 }
