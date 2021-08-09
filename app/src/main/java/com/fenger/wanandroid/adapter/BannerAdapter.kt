@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
-import com.bumptech.glide.Glide
+import coil.load
 import com.fenger.wanandroid.bean.BannerData
 import com.fenger.wanandroid.view.BannerView
 
@@ -23,7 +23,7 @@ class BannerAdapter(private val datas: List<BannerData.Data>, private val viewPa
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val image = ImageView(container.context)
         image.scaleType = ImageView.ScaleType.FIT_XY
-        Glide.with(container.context).load(datas[position % datas.size].imagePath).into(image)
+        image.load(datas[position % datas.size].imagePath)
         viewPager.addView(image)
         return image
     }
