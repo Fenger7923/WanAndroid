@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.library_base.bean.ArticleData
 import com.fenger.wanandroid.R
-import com.fenger.wanandroid.bean.ArticleListData
 import com.fenger.wanandroid.ui.activity.WebViewActivity
 import com.fenger.wanandroid.ui.activity.WebViewActivity.Companion.JUMP_URL
 
@@ -16,7 +16,7 @@ import com.fenger.wanandroid.ui.activity.WebViewActivity.Companion.JUMP_URL
  * @author fengerzhang
  * @date 3/1/21 4:14 PM
  */
-class RecyclerViewAdapter(private val datas: List<ArticleListData.Data.Datas>) :
+class RecyclerViewAdapter(private val datas: List<ArticleData>) :
     RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -38,7 +38,7 @@ class RecyclerViewAdapter(private val datas: List<ArticleListData.Data.Datas>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = datas[position]
         val context = holder.itemView.context
-        holder.author.text = if (data.author.isNotEmpty()) data.author else data.shareUser
+        holder.author.text = data.author.ifEmpty { data.shareUser }
         holder.title.text = data.title
         holder.date.text = data.niceDate
         holder.type.text = data.chapterName

@@ -8,18 +8,21 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.library_base.bean.ArticleData
+import com.example.library_base.bean.ArticleDataList
+import com.example.library_base.bean.TreeData
+import com.example.library_base.bean.TreeListData
+import com.example.library_base.http.getArticleList
+import com.example.library_base.http.getTypeTreeList
 import com.fenger.wanandroid.R
 import com.fenger.wanandroid.adapter.RecyclerViewAdapter
 import com.fenger.wanandroid.adapter.TreeListAdapter
 import com.fenger.wanandroid.base.BaseFragment
-import com.fenger.wanandroid.bean.ArticleListData
-import com.fenger.wanandroid.bean.TreeListData
-import com.fenger.wanandroid.network.RetrofitHelper
 import kotlinx.android.synthetic.main.fragment_tree.tree_article_list
 import kotlinx.android.synthetic.main.fragment_tree.tree_flow
 import kotlinx.android.synthetic.main.fragment_tree.tree_list
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 
 
 /**
@@ -28,9 +31,9 @@ import rx.schedulers.Schedulers
  */
 class TreeFragment : BaseFragment() {
 
-    private lateinit var firstLvData: List<TreeListData.Data>
+    private lateinit var firstLvData: List<TreeData>
 
-    private var articleListData: MutableList<ArticleListData.Data.Datas> = mutableListOf()
+    private var articleListData: MutableList<ArticleData> = mutableListOf()
     private var curPage = 0
     private var totalPage = 0
     private var isLoading = false
@@ -41,14 +44,9 @@ class TreeFragment : BaseFragment() {
     }
 
     override fun initView() {
-        RetrofitHelper.retrofitService.getTypeTreeList()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                initRecycleView(it)
-            }, {
-                it.toString()
-            })
+        MainScope().launch {
+            initRecycleView(getTypeTreeList())
+        }
 
         tree_article_list.layoutManager = LinearLayoutManager(context)
         tree_article_list.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
@@ -72,12 +70,9 @@ class TreeFragment : BaseFragment() {
         })
     }
 
-    private fun initRecycleView(result: TreeListData) {
-        if (result.errorCode != 0) {
-            return
-        }
+    private fun initRecycleView(treeList: TreeListData) {
+        firstLvData = treeList.data ?: return
 
-        firstLvData = result.data
         if (!firstLvData.isNullOrEmpty()) {
             tree_list.layoutManager = LinearLayoutManager(context)
 
@@ -96,10 +91,10 @@ class TreeFragment : BaseFragment() {
         }
     }
 
-    fun refreshSecondLvList(datas: List<TreeListData.Data.Children>?) {
+    fun refreshSecondLvList(treeDatas: List<TreeData>?) {
         tree_flow.removeAllViews()
-        if (!datas.isNullOrEmpty()) {
-            for (data in datas) {
+        if (!treeDatas.isNullOrEmpty()) {
+            for (data in treeDatas) {
                 val tv = LayoutInflater.from(context).inflate(R.layout.item_flow, tree_flow, false) as TextView
                 tv.text = data.name
                 tv.setOnClickListener {
@@ -120,28 +115,22 @@ class TreeFragment : BaseFragment() {
     }
 
     private fun loadArticleData(page: Int) {
-        RetrofitHelper.retrofitService.getArticleList(page, treeCid)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                isLoading = false
-                initArticleList(it)
-            }, {
-                it.toString()
-            })
+        MainScope().launch {
+            isLoading = false
+            initArticleList(getArticleList(page, treeCid))
+        }
     }
 
-    private fun initArticleList(result: ArticleListData) {
-        if (result.errorCode != 0) {
-            return
-        }
-        curPage = result.data.curPage - 1
+    private fun initArticleList(articleDataList: ArticleDataList) {
+        val articleList = articleDataList.data ?: return
+
+        curPage = articleList.curPage - 1
 
         if (curPage == 0) {
-            totalPage = result.data.pageCount - 1
+            totalPage = articleList.pageCount - 1
         }
 
-        result.data.datas?.forEach {
+        articleList.datas?.forEach {
             articleListData.add(it)
         }
 

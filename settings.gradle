@@ -1,3 +1,4 @@
 include ':app'
 rootProject.name = "WanAndroid"
 include ':library_base'
+include ':library_widget'

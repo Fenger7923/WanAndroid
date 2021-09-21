@@ -3,25 +3,24 @@ package com.fenger.wanandroid.ui.activity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.viewpager.widget.ViewPager
+import com.example.library_base.http.login
+import com.example.library_widget.widget.ColorTrackTextView
 import com.fenger.wanandroid.R
 import com.fenger.wanandroid.adapter.FragmentAdapter
 import com.fenger.wanandroid.base.BaseActivity
-import com.fenger.wanandroid.utils.User
-import com.fenger.wanandroid.network.RetrofitHelper
 import com.fenger.wanandroid.ui.fragment.MainFragment
 import com.fenger.wanandroid.ui.fragment.MyFragment
 import com.fenger.wanandroid.ui.fragment.TreeFragment
-import com.fenger.wanandroid.view.ColorTrackTextView
+import com.fenger.wanandroid.utils.User
 import kotlinx.android.synthetic.main.activity_main.find_tab
 import kotlinx.android.synthetic.main.activity_main.life_tab
 import kotlinx.android.synthetic.main.activity_main.main_tab
 import kotlinx.android.synthetic.main.activity_main.message_tab
 import kotlinx.android.synthetic.main.activity_main.news_tab
 import kotlinx.android.synthetic.main.activity_main.viewpager_fragment
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 
 /**
  * @author fengerzhang
@@ -93,18 +92,10 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     private fun initUserInfo() {
         val username = "fengerzzz"
         val password = "1234567"
-        RetrofitHelper.retrofitService.login(username, password)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                if (it.errorCode != 0) {
-                    Toast.makeText(this, it.errorMsg, Toast.LENGTH_SHORT).show()
-                } else {
-                    User.setUser(it)
-                }
-            }, {
-                it.toString()
-            })
+        MainScope().launch {
+            val result = login(username, password)
+            User.setUser(result)
+        }
     }
 
 

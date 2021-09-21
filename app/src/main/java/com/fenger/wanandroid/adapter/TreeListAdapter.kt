@@ -5,14 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.library_base.bean.TreeData
 import com.fenger.wanandroid.R
-import com.fenger.wanandroid.bean.TreeListData
 
 /**
  * @author fengerzhang
  * @date 3/10/21 3:34 PM
  */
-class TreeListAdapter(private val datas: List<TreeListData.Data>) : RecyclerView.Adapter<TreeListAdapter.ViewHolder>() {
+class TreeListAdapter(private val datas: List<TreeData>) : RecyclerView.Adapter<TreeListAdapter.ViewHolder>() {
     private var itemClickListener: OnItemClickListener? = null
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

@@ -8,17 +8,19 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.library_base.bean.ArticleData
+import com.example.library_base.bean.ArticleDataList
 import com.fenger.wanandroid.R
 import com.fenger.wanandroid.adapter.RecyclerViewAdapter
 import com.fenger.wanandroid.base.BaseFragment
-import com.fenger.wanandroid.bean.ArticleListData
-import com.fenger.wanandroid.bean.BannerData
-import com.fenger.wanandroid.network.RetrofitHelper
-import kotlinx.android.synthetic.main.fragment_main.article_list
-import kotlinx.android.synthetic.main.fragment_main.banner_view
-import kotlinx.android.synthetic.main.fragment_main.swipe_rl
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
+import com.example.library_base.bean.BannerData
+import com.example.library_base.http.getBanner
+import com.example.library_base.http.getMainTabList
+import com.example.library_widget.widget.BannerView
+import com.fenger.wanandroid.helper.BannerHelper
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 
 
 /**
@@ -28,36 +30,39 @@ import rx.schedulers.Schedulers
 class MainFragment : BaseFragment() {
 
     private var isLoading = false
-    private var articleListData: MutableList<ArticleListData.Data.Datas> = mutableListOf()
+    private var articleListData: MutableList<ArticleData> = mutableListOf()
     private var curPage = 0
     private var totalPage = 0
 
+    private lateinit var articleListView: RecyclerView
+    private lateinit var swipeView: SwipeRefreshLayout
+    private lateinit var bannerView: BannerView
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        val view = inflater.inflate(R.layout.fragment_main, null, false)
+        articleListView = view.findViewById(R.id.article_list)
+        bannerView = view.findViewById(R.id.banner_view)
+        swipeView = view.findViewById(R.id.swipe_rl)
+        return view
     }
 
     override fun initView() {
-        RetrofitHelper.retrofitService.getBanner()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                initBanner(it)
-            }, {
-                it.toString()
-            })
+        MainScope().launch {
+            getBanner().data?.let { initBanner(it) }
+        }
 
-        article_list.layoutManager = LinearLayoutManager(context)
-        article_list.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-        article_list.adapter = RecyclerViewAdapter(articleListData)
+        articleListView.layoutManager = LinearLayoutManager(context)
+        articleListView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+        articleListView.adapter = RecyclerViewAdapter(articleListData)
 
-        article_list.addOnScrollListener(object : OnScrollListener() {
+        articleListView.addOnScrollListener(object : OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 
-                val total = (article_list.layoutManager as LinearLayoutManager).itemCount
-                val last = (article_list.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
+                val total = (articleListView.layoutManager as LinearLayoutManager).itemCount
+                val last = (articleListView.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
 
-                if (last == total -1 && !swipe_rl.isRefreshing && !isLoading) {
+                if (last == total -1 && !swipeView.isRefreshing && !isLoading) {
                     isLoading = true
                     if (curPage <= totalPage) {
                         curPage ++
@@ -68,48 +73,39 @@ class MainFragment : BaseFragment() {
         })
             loadArticleData(0)
 
-        swipe_rl.setOnRefreshListener {
+        swipeView.setOnRefreshListener {
             articleListData.clear()
-            article_list.removeAllViews()
+            articleListView.removeAllViews()
             loadArticleData(0)
         }
     }
 
     private fun loadArticleData(page: Int) {
-        RetrofitHelper.retrofitService.getMainTabList(page)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                isLoading = false
-                swipe_rl.isRefreshing = false
-                initArticleList(it)
-            }, {
-                it.toString()
-            })
-    }
-
-    private fun initBanner(result: BannerData) {
-        if (result.errorCode != 0) {
-            return
-        }
-        val bannerData: List<BannerData.Data>? = result.data
-        if (!bannerData.isNullOrEmpty()) {
-            banner_view.setBannerData(bannerData)
+        MainScope().launch {
+            val list = getMainTabList(page)
+            isLoading = false
+            swipeView.isRefreshing = false
+            initArticleList(list)
         }
     }
 
-    private fun initArticleList(result: ArticleListData) {
-        if (result.errorCode != 0) {
-            return
-        }
+    private fun initBanner(datas: List<BannerData>) {
+        val bannerHelper = BannerHelper(bannerView)
+        bannerHelper.setDatas(datas)
+        bannerHelper.showViewPager()
+    }
+
+    private fun initArticleList(articleDataList: ArticleDataList) {
+        val articleList = articleDataList.data ?: return
+
         if (curPage == 0) {
-            totalPage = result.data.pageCount - 1
+            totalPage = articleList.pageCount - 1
         }
 
-        result.data.datas?.forEach {
+        articleList.datas?.forEach {
             articleListData.add(it)
         }
 
-        article_list.adapter?.notifyDataSetChanged()
+        articleListView.adapter?.notifyDataSetChanged()
     }
 }

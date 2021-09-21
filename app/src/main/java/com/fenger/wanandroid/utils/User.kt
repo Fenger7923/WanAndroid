@@ -1,7 +1,7 @@
 package com.fenger.wanandroid.utils
 
 import android.content.Context
-import com.fenger.wanandroid.bean.UserInfoData
+import com.example.library_base.bean.LoginData
 import com.fenger.wanandroid.ui.activity.LoginActivity
 
 /**
@@ -33,8 +33,8 @@ object User {
         }
     }
 
-    fun setUser(result: UserInfoData) {
-        val userData = result.data
+    fun setUser(result: LoginData) {
+        val userData = result.data ?: return
         isLogin = true
         admin = userData.admin
         id = userData.id

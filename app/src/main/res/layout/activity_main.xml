@@ -15,27 +15,27 @@
         android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.fenger.wanandroid.view.ColorTrackTextView
+        <com.example.library_widget.widget.ColorTrackTextView
             android:id="@+id/main_tab"
             style="@style/tab_button_style"
             android:text="@string/main_tab" />
 
-        <com.fenger.wanandroid.view.ColorTrackTextView
+        <com.example.library_widget.widget.ColorTrackTextView
             android:id="@+id/find_tab"
             style="@style/tab_button_style"
             android:text="@string/tree_tab" />
 
-        <com.fenger.wanandroid.view.ColorTrackTextView
+        <com.example.library_widget.widget.ColorTrackTextView
             android:id="@+id/news_tab"
             style="@style/tab_button_style"
             android:text="@string/news_tab" />
 
-        <com.fenger.wanandroid.view.ColorTrackTextView
+        <com.example.library_widget.widget.ColorTrackTextView
             android:id="@+id/message_tab"
             style="@style/tab_button_style"
             android:text="@string/message_tab" />
 
-        <com.fenger.wanandroid.view.ColorTrackTextView
+        <com.example.library_widget.widget.ColorTrackTextView
             android:id="@+id/life_tab"
             style="@style/tab_button_style"
             android:text="@string/life_tab" />
