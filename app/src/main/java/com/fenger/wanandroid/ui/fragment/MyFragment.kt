@@ -4,55 +4,242 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.scrollable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.imageResource
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.fenger.wanandroid.R
 import com.fenger.wanandroid.base.BaseFragment
 import com.fenger.wanandroid.utils.User
-import kotlinx.android.synthetic.main.fragment_mine.ll_user_id
-import kotlinx.android.synthetic.main.fragment_mine.ll_user_level_ranking
-import kotlinx.android.synthetic.main.fragment_mine.rl_user_info
-import kotlinx.android.synthetic.main.fragment_mine.tv_user_id
-import kotlinx.android.synthetic.main.fragment_mine.tv_user_level
-import kotlinx.android.synthetic.main.fragment_mine.tv_user_name
-import kotlinx.android.synthetic.main.fragment_mine.tv_user_ranking
+import com.google.android.material.composethemeadapter.MdcTheme
 
 /**
  * @author fengerzhang
  * @date 2/1/21 9:35 PM
  */
 class MyFragment : BaseFragment() {
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_mine, container, false)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        initView()
-    }
     override fun initView() {
-        if (!User.isLogin) {
-            setLogoutState()
-        } else {
-            setLoginState()
+
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View = ComposeView(requireContext()).apply {
+        setContent {
+            MdcTheme {
+                Column {
+                    SetUserInfo(User.isLogin)
+
+                    SetSettingList()
+                }
+            }
         }
     }
 
-    private fun setLogoutState() {
-        rl_user_info.setOnClickListener {
-            User.doIfLogin(activity)
+    @Composable
+    private fun SetUserInfo(isLogin: Boolean) {
+        Column(
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(260.dp)
+                .background(color = colorResource(R.color.blue))
+        ) {
+            Image(
+                bitmap = ImageBitmap.imageResource(id = R.drawable.pager_image1),
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .width(80.dp)
+                    .height(80.dp)
+                    .clip(shape = RoundedCornerShape(50)),
+                contentDescription = "用户头像"
+            )
+            Text(
+                text = if (isLogin) User.username else stringResource(id = R.string.to_login),
+                modifier = Modifier
+                    .clickable {
+                        if (!isLogin) {
+                            User.doIfLogin(activity)
+                        }
+                    }
+                    .padding(top = 10.dp, bottom = 5.dp),
+                color = Color.White,
+                fontSize = 22.sp
+            )
+            if (isLogin) {
+                Text(
+                    text = "ID: ${User.id}",
+                    modifier = Modifier.padding(bottom = 5.dp),
+                    color = Color.White,
+                    fontSize = 12.sp
+                )
+                Text(
+                    text = "等级: ${User.icon}   排名: ${User.username}",
+                    modifier = Modifier.padding(bottom = 5.dp),
+                    color = Color.White,
+                    fontSize = 12.sp
+                )
+            }
         }
-        tv_user_name.text = getText(R.string.to_login)
-        ll_user_id.visibility = View.GONE
-        ll_user_level_ranking.visibility = View.GONE
     }
 
-    private fun setLoginState() {
-        tv_user_name.text = User.username
-        tv_user_id.text = User.id.toString()
-        ll_user_id.visibility = View.VISIBLE
-        ll_user_level_ranking.visibility = View.VISIBLE
-        tv_user_level.text = User.icon
-        tv_user_ranking.text = User.username
+    @Composable
+    private fun SetSettingList() {
+        Column(
+            verticalArrangement = Arrangement.Top,
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight()
+                .background(color = colorResource(R.color.white))
+        ) {
+            Row(
+                horizontalArrangement = Arrangement.Start,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
+                    .padding(start = 16.dp, end = 16.dp)
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_action_like),
+                    contentDescription = null
+                )
+                Text(
+                    text = stringResource(id = R.string.my_points),
+                    fontSize = 15.sp,
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(start = 10.dp, end = 10.dp)
+                )
+                Text(
+                    text = User.coinCount.toString(),
+                    fontSize = 13.sp,
+                    color = colorResource(id = R.color.red),
+                    modifier = Modifier.padding(end = 5.dp)
+                )
+                Image(
+                    bitmap = ImageBitmap.imageResource(id = R.drawable.ic_next),
+                    contentDescription = null,
+                    modifier = Modifier.size(13.dp).rotate(180f)
+                )
+            }
+            Row(
+                horizontalArrangement = Arrangement.Start,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
+                    .padding(start = 16.dp, end = 16.dp)
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_action_like),
+                    contentDescription = null
+                )
+                Text(
+                    text = stringResource(id = R.string.my_collect),
+                    fontSize = 15.sp,
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(start = 10.dp, end = 10.dp)
+                )
+                Image(
+                    bitmap = ImageBitmap.imageResource(id = R.drawable.ic_next),
+                    contentDescription = null,
+                    modifier = Modifier.size(13.dp).rotate(180f)
+                )
+            }
+            Row(
+                horizontalArrangement = Arrangement.Start,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
+                    .padding(start = 16.dp, end = 16.dp)
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_action_like),
+                    contentDescription = null
+                )
+                Text(
+                    text = stringResource(id = R.string.about_me),
+                    fontSize = 15.sp,
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(start = 10.dp, end = 10.dp)
+                )
+                Image(
+                    bitmap = ImageBitmap.imageResource(id = R.drawable.ic_next),
+                    contentDescription = null,
+                    modifier = Modifier.size(13.dp).rotate(180f)
+                )
+            }
+            Row(
+                horizontalArrangement = Arrangement.Start,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
+                    .padding(start = 16.dp, end = 16.dp)
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_action_like),
+                    contentDescription = null
+                )
+                Text(
+                    text = stringResource(id = R.string.system_settings),
+                    fontSize = 15.sp,
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(start = 10.dp, end = 10.dp)
+                )
+                Image(
+                    bitmap = ImageBitmap.imageResource(id = R.drawable.ic_next),
+                    contentDescription = null,
+                    modifier = Modifier.size(13.dp).rotate(180f)
+                )
+            }
+        }
     }
 
+    @Preview(showBackground = false)
+    @Composable
+    private fun TestUser() {
+        SetUserInfo(true)
+    }
+
+    @Preview(showBackground = false)
+    @Composable
+    private fun TestSetting() {
+        SetSettingList()
+    }
 }
