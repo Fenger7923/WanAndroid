@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -74,6 +73,11 @@ class MyFragment : BaseFragment() {
                 .fillMaxWidth()
                 .height(260.dp)
                 .background(color = colorResource(R.color.blue))
+                .clickable {
+                    if (!isLogin) {
+                        User.doIfLogin(activity)
+                    }
+                }
         ) {
             Image(
                 bitmap = ImageBitmap.imageResource(id = R.drawable.pager_image1),
@@ -86,13 +90,7 @@ class MyFragment : BaseFragment() {
             )
             Text(
                 text = if (isLogin) User.username else stringResource(id = R.string.to_login),
-                modifier = Modifier
-                    .clickable {
-                        if (!isLogin) {
-                            User.doIfLogin(activity)
-                        }
-                    }
-                    .padding(top = 10.dp, bottom = 5.dp),
+                modifier = Modifier.padding(top = 10.dp, bottom = 5.dp),
                 color = Color.White,
                 fontSize = 22.sp
             )
