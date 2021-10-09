@@ -70,4 +70,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$versions.composeLifecycleVersion"
 
     implementation "com.google.android.material:compose-theme-adapter:$versions.composeVersion"
+
+    implementation "com.google.accompanist:accompanist-pager:$versions.accompanistVersion"
+
 }

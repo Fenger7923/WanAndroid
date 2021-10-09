@@ -40,3 +40,4 @@ local.properties
 /.idea/sonarlint/issuestore/e/5/e5dad701e26b7faf75bbf20d1547ef000ada0158
 /.idea/sonarlint/issuestore/f/d/fd47b3e1bdbcc244e8a943236d6a2b38d17c5309
 /.idea/
+/app/build/
