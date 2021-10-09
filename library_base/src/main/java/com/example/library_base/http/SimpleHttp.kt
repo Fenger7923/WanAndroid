@@ -53,7 +53,7 @@ suspend inline fun getArticleList(page: Int, cid: Int): ArticleDataList {
  */
 suspend inline fun login(username: String, password: String): LoginData {
     val request = HttpRequest(url = "user/login")
-        .putPath("username", username)
+        .putQuery("username", username)
         .putQuery("password", password)
     return HttpController.post(request, LoginData::class.java)
 }

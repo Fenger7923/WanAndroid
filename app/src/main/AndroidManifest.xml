@@ -22,10 +22,11 @@
         <activity
             android:name=".ui.activity.WebViewActivity"
             android:configChanges="keyboard|screenSize|orientation|layoutDirection"
-            android:screenOrientation="portrait"
+            android:screenOrientation="fullSensor"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
             android:name=".ui.activity.LoginActivity"
+            android:launchMode="singleTask"
             android:configChanges="keyboard|keyboardHidden|screenSize|fontScale|density|orientation" />
     </application>
 
