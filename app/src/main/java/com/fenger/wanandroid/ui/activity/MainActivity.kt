@@ -12,6 +12,7 @@ import com.fenger.wanandroid.base.BaseActivity
 import com.fenger.wanandroid.ui.fragment.MainFragment
 import com.fenger.wanandroid.ui.fragment.MyFragment
 import com.fenger.wanandroid.ui.fragment.TreeFragment
+import com.fenger.wanandroid.ui.tree.TreeViewModel
 import com.fenger.wanandroid.utils.User
 import kotlinx.android.synthetic.main.activity_main.find_tab
 import kotlinx.android.synthetic.main.activity_main.life_tab
@@ -51,7 +52,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun initViewPager() {
-        val fragments = listOf(MainFragment(), TreeFragment(), MyFragment(), MyFragment(), MyFragment())
+        val fragments = listOf(MainFragment(), TreeFragment(TreeViewModel()), MyFragment(), MyFragment(), MyFragment())
         viewpager_fragment.adapter = FragmentAdapter(supportFragmentManager, fragments)
 
         // 默认一进来加载的页面

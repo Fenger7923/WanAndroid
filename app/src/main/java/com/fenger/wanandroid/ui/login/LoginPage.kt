@@ -17,7 +17,6 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -36,7 +35,7 @@ import androidx.compose.ui.unit.sp
 import com.example.library_base.http.login
 import com.fenger.wanandroid.R
 import com.fenger.wanandroid.constants.inputEditTextType
-import com.fenger.wanandroid.ui.activity.LoginActivity
+import com.fenger.wanandroid.ui.LoginActivity
 import com.fenger.wanandroid.utils.User
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

@@ -60,12 +60,18 @@ dependencies {
 
     implementation "androidx.activity:activity-ktx:$versions.activityVersion"
     implementation "androidx.activity:activity-compose:$versions.activityVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$versions.lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$versions.lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycleVersion"
 
     implementation "androidx.compose.material:material:$versions.composeVersion"
 
     implementation "androidx.compose.animation:animation:$versions.composeVersion"
 
     implementation "androidx.compose.ui:ui-tooling:$versions.composeVersion"
+
+    implementation "androidx.compose.runtime:runtime-livedata:$versions.composeVersion"
 
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$versions.composeLifecycleVersion"
 
@@ -75,4 +81,5 @@ dependencies {
 
     implementation "com.google.accompanist:accompanist-insets:$versions.accompanistVersion"
 
+    implementation "com.google.accompanist:accompanist-flowlayout:$versions.accompanistVersion"
 }

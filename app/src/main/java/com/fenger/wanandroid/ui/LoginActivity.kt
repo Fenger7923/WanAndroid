@@ -1,4 +1,4 @@
-package com.fenger.wanandroid.ui.activity
+package com.fenger.wanandroid.ui
 
 import android.content.Context
 import android.content.Intent
