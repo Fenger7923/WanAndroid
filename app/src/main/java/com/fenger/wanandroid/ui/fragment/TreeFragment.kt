@@ -14,7 +14,7 @@ import com.fenger.wanandroid.ui.tree.TreeViewModel
  * @author fengerzhang
  * @date 3/5/21 4:10 PM
  */
-class TreeFragment(private val viewModel: TreeViewModel) : BaseFragment() {
+class TreeFragment : BaseFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,7 +22,7 @@ class TreeFragment(private val viewModel: TreeViewModel) : BaseFragment() {
         savedInstanceState: Bundle?
     ): View = ComposeView(requireContext()).apply {
         setContent {
-            TreePage(viewModel)
+            TreePage()
         }
     }
 

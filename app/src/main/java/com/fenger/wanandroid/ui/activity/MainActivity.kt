@@ -52,7 +52,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun initViewPager() {
-        val fragments = listOf(MainFragment(), TreeFragment(TreeViewModel()), MyFragment(), MyFragment(), MyFragment())
+        val fragments = listOf(MainFragment(), TreeFragment(), MyFragment(), MyFragment(), MyFragment())
         viewpager_fragment.adapter = FragmentAdapter(supportFragmentManager, fragments)
 
         // 默认一进来加载的页面

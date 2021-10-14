@@ -34,7 +34,7 @@ import com.google.android.material.composethemeadapter.MdcTheme
  */
 
 @Composable
-fun TreePage(treeViewModel: TreeViewModel) {
+fun TreePage(treeViewModel: TreeViewModel = TreeViewModel()) {
 
     val firstLvData by treeViewModel.firstLvData.observeAsState(listOf())
     val secondLvData by treeViewModel.secondLvData.observeAsState(listOf())

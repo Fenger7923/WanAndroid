@@ -25,7 +25,7 @@ import kotlinx.coroutines.flow.flowOn
 class TreeViewModel : ViewModel() {
 
     // 分页加载数据
-    private val currentPage: LiveData<Int> = MutableLiveData<Int>(0)
+    private val currentPage: MutableLiveData<Int> = MutableLiveData<Int>(0)
 
     // 第二层列表id
     private val secondCid: MutableLiveData<Int> = MutableLiveData<Int>(0)
