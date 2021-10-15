@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.library_base.bean.ArticleData
 import com.fenger.wanandroid.R
-import com.fenger.wanandroid.ui.activity.WebViewActivity
+import com.fenger.wanandroid.ui.web.WebViewActivity
 import com.fenger.wanandroid.utils.startActivityExt
 
 /**
@@ -104,7 +104,7 @@ fun ArticleDataItem(data: ArticleData) {
 
 @Composable
 @Preview(showBackground = false)
-fun Test() {
+fun TestArticleDataItem() {
     ArticleDataItem(
         data = ArticleData(
             0,

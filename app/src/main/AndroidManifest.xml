@@ -20,12 +20,12 @@
         </activity>
 
         <activity
-            android:name=".ui.activity.WebViewActivity"
+            android:name=".ui.web.WebViewActivity"
             android:configChanges="keyboard|screenSize|orientation|layoutDirection"
             android:screenOrientation="fullSensor"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
-            android:name=".ui.LoginActivity"
+            android:name=".ui.login.LoginActivity"
             android:launchMode="singleTask"
             android:configChanges="keyboard|keyboardHidden|screenSize|fontScale|density|orientation" />
     </application>

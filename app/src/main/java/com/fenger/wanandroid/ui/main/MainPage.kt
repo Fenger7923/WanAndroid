@@ -58,7 +58,7 @@ fun MainPage(mainViewModel: MainViewModel = MainViewModel()) {
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun Banner(bannerDataList: List<BannerData>, modifier: Modifier) {
-    // TODO bug也挺多的
+    // TODO bug也挺多的  滑动几次之后切换到其他的页面再回来就crash
 
     val timeMillis = 3000L
     val pagerState = rememberPagerState(

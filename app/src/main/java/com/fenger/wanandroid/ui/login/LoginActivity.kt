@@ -1,4 +1,4 @@
-package com.fenger.wanandroid.ui
+package com.fenger.wanandroid.ui.login
 
 import android.content.Context
 import android.content.Intent
@@ -29,7 +29,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.fenger.wanandroid.R
 import com.fenger.wanandroid.base.BaseActivity
-import com.fenger.wanandroid.ui.login.LoginPage
 import com.fenger.wanandroid.ui.register.RegisterPage
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
@@ -52,8 +51,6 @@ class LoginActivity : BaseActivity() {
             context?.startActivity(intent)
         }
     }
-
-    override fun setLayoutId(): Int = R.layout.activity_main
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

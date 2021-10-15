@@ -35,7 +35,6 @@ import androidx.compose.ui.unit.sp
 import com.example.library_base.http.login
 import com.fenger.wanandroid.R
 import com.fenger.wanandroid.constants.inputEditTextType
-import com.fenger.wanandroid.ui.LoginActivity
 import com.fenger.wanandroid.utils.User
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

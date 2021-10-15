@@ -1,4 +1,4 @@
-package com.fenger.wanandroid.ui.activity
+package com.fenger.wanandroid.ui.web
 
 import android.os.Bundle
 import android.webkit.WebView
@@ -15,7 +15,6 @@ import com.fenger.wanandroid.constants.Constant
  * @date 3/5/21 3:07 PM
  */
 class WebViewActivity : BaseActivity() {
-    override fun setLayoutId(): Int = R.layout.activity_main
 
     companion object {
         const val JUMP_URL = "jump_url"
