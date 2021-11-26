@@ -2,7 +2,7 @@ package com.fenger.wanandroid.utils
 
 import android.content.Context
 import com.example.library_base.bean.LoginData
-import com.fenger.wanandroid.ui.login.LoginActivity
+import com.fenger.wanandroid.screen.loginScreen.LoginActivity
 
 /**
  * @author fengerzhang

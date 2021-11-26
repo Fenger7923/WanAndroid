@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WanAndroid"
         android:networkSecurityConfig="@xml/network_security_config">
-        <activity android:name=".ui.activity.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,12 +20,12 @@
         </activity>
 
         <activity
-            android:name=".ui.web.WebViewActivity"
+            android:name="com.fenger.wanandroid.screen.webScreen.WebViewActivity"
             android:configChanges="keyboard|screenSize|orientation|layoutDirection"
             android:screenOrientation="fullSensor"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
-            android:name=".ui.login.LoginActivity"
+            android:name="com.fenger.wanandroid.screen.loginScreen.LoginActivity"
             android:launchMode="singleTask"
             android:configChanges="keyboard|keyboardHidden|screenSize|fontScale|density|orientation" />
     </application>

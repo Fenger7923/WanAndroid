@@ -1,4 +1,4 @@
-package com.fenger.wanandroid.ui.tree
+package com.fenger.wanandroid.screen.treeScreen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

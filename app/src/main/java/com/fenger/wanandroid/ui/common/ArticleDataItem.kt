@@ -23,8 +23,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.library_base.bean.ArticleData
 import com.fenger.wanandroid.R
-import com.fenger.wanandroid.ui.web.WebViewActivity
-import com.fenger.wanandroid.utils.startActivityExt
+import com.fenger.wanandroid.screen.webScreen.WebViewActivity
+import com.fenger.wanandroid.ext.startActivityExt
 
 /**
  * @author fengerzhang

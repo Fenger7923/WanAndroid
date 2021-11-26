@@ -1,4 +1,4 @@
-package com.fenger.wanandroid.utils
+package com.fenger.wanandroid.ext
 
 import android.app.Activity
 import android.content.Context

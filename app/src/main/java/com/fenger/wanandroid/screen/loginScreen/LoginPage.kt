@@ -1,4 +1,4 @@
-package com.fenger.wanandroid.ui.login
+package com.fenger.wanandroid.screen.loginScreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

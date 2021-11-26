@@ -1,4 +1,4 @@
-package com.fenger.wanandroid.ui.main
+package com.fenger.wanandroid.screen.mainScreen
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,11 +6,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.example.library_base.bean.ArticleData
 import com.example.library_base.bean.BannerData
 import com.example.library_base.http.getBanner
 import com.example.library_base.http.getMainTabList
+import com.fenger.wanandroid.adapter.ArticleListPagingSource
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
@@ -22,7 +28,7 @@ class MainViewModel : ViewModel() {
     // 分页加载数据
     private val currentPage = MutableLiveData(0)
 
-    val articleListData: LiveData<MutableList<ArticleData>> = currentPage.switchMap {
+    private val articleListData: LiveData<MutableList<ArticleData>> = currentPage.switchMap {
         flow {
             val result: MutableList<ArticleData> = mutableListOf()
             val articleList =
@@ -33,6 +39,10 @@ class MainViewModel : ViewModel() {
             emit(result)
         }.flowOn(Dispatchers.Default).asLiveData(viewModelScope.coroutineContext)
     }
+
+    val articleListData1: Flow<PagingData<ArticleData>> = Pager(PagingConfig(pageSize = 10)) {
+        ArticleListPagingSource()
+    }.flow.cachedIn(viewModelScope)
 
     fun refreshList() {
         articleListData.value?.clear()

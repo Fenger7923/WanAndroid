@@ -1,11 +1,10 @@
-package com.fenger.wanandroid.ui.web
+package com.fenger.wanandroid.screen.webScreen
 
 import android.os.Bundle
 import android.webkit.WebView
 import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.compose.ui.viewinterop.AndroidView
-import com.fenger.wanandroid.R
 import com.fenger.wanandroid.base.BaseActivity
 import com.fenger.wanandroid.constants.Constant
 

@@ -1,4 +1,4 @@
-package com.fenger.wanandroid.ui.login
+package com.fenger.wanandroid.screen.loginScreen
 
 import android.content.Context
 import android.content.Intent

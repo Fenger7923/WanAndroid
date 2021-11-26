@@ -1,4 +1,4 @@
-package com.fenger.wanandroid.ui.tree
+package com.fenger.wanandroid.screen.treeScreen
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData

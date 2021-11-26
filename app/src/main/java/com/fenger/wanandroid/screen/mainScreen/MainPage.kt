@@ -1,4 +1,4 @@
-package com.fenger.wanandroid.ui.main
+package com.fenger.wanandroid.screen.mainScreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -16,6 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.itemsIndexed
 import coil.compose.rememberImagePainter
 import com.example.library_base.bean.BannerData
 import com.fenger.wanandroid.adapter.ArticleDataItem
@@ -32,12 +33,15 @@ import kotlinx.coroutines.delay
  */
 @Composable
 fun MainPage(mainViewModel: MainViewModel = MainViewModel()) {
-    val articleListData by mainViewModel.articleListData.observeAsState(listOf())
     val bannerDataList by mainViewModel.bannerDataList.observeAsState(listOf())
     val refreshState = rememberSwipeRefreshState(isRefreshing = false)
+    val articleListData = mainViewModel.articleListData1.collectAsLazyPagingItems()
 
     Column {
-        Banner(bannerDataList, Modifier.fillMaxWidth().height(220.dp))
+        Banner(bannerDataList,
+            Modifier
+                .fillMaxWidth()
+                .height(220.dp))
 
         SwipeRefresh(
             state = refreshState,
@@ -47,8 +51,10 @@ fun MainPage(mainViewModel: MainViewModel = MainViewModel()) {
             onRefresh = { mainViewModel.refreshList() }) {
             LazyColumn {
                 itemsIndexed(articleListData) { _, item ->
-                    ArticleDataItem(item)
-                    Divider(color = Color.LightGray)
+                    if (item != null) {
+                        ArticleDataItem(item)
+                        Divider(color = Color.LightGray)
+                    }
                 }
             }
         }

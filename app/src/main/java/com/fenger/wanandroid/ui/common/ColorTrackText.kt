@@ -1,4 +1,4 @@
-package com.fenger.wanandroid.adapter
+package com.fenger.wanandroid.ui.common
 
 import android.content.res.Resources
 import android.graphics.Rect
@@ -33,7 +33,7 @@ enum class Direction {
 
 @Composable
 fun DrawGradientText(
-    name: String,
+    text: String,
     modifier: Modifier = Modifier,
     fromColor: Color,
     endColor: Color,
@@ -53,7 +53,7 @@ fun DrawGradientText(
         textSize = fontSizeF
     }
 
-    val textWidth = (paint.measureText(name) / Resources.getSystem().displayMetrics.density).dp
+    val textWidth = (paint.measureText(text) / Resources.getSystem().displayMetrics.density).dp
     val widthF = TypedValue.applyDimension(
         TypedValue.COMPLEX_UNIT_DIP,
         textWidth.value,
@@ -84,14 +84,14 @@ fun DrawGradientText(
 
         // 获取字体宽度
         val bounds = Rect()
-        paint.getTextBounds(name, 0, name.length, bounds)
+        paint.getTextBounds(text, 0, text.length, bounds)
         // 基线
         val fontMetricsInt = paint.fontMetricsInt
         val dy = (fontMetricsInt.bottom - fontMetricsInt.top) / 2 - fontMetricsInt.bottom
         val baseLine = size.height / 2 + dy
         drawIntoCanvas { canvas ->
             canvas.save()
-            canvas.nativeCanvas.drawText(name, center.x, baseLine, paint)
+            canvas.nativeCanvas.drawText(text, center.x, baseLine, paint)
             canvas.restore()
         }
         paint.reset()
@@ -106,7 +106,7 @@ fun TestColorTrackText() {
             "1234567890",
             fromColor = Color.Red,
             endColor = Color.Blue,
-            percent = 0.2f,
+            percent = 1f,
             direction = Direction.LTR,
             fontSize = 25.sp
         )

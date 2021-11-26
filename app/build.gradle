@@ -86,4 +86,6 @@ dependencies {
     implementation "com.google.accompanist:accompanist-swiperefresh:$versions.accompanistVersion"
 
     implementation "com.google.accompanist:accompanist-pager:$versions.accompanistVersion"
+
+    implementation "androidx.paging:paging-compose:$versions.pagingVersion"
 }
