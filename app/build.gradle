@@ -87,5 +87,7 @@ dependencies {
 
     implementation "com.google.accompanist:accompanist-pager:$versions.accompanistVersion"
 
+    implementation "com.google.accompanist:accompanist-pager-indicators:$versions.accompanistVersion"
+
     implementation "androidx.paging:paging-compose:$versions.pagingVersion"
 }
