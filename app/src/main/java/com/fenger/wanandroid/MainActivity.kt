@@ -11,7 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
@@ -25,6 +25,7 @@ import com.fenger.wanandroid.screen.mainScreen.MainPage
 import com.fenger.wanandroid.screen.treeScreen.TreePage
 import com.fenger.wanandroid.ui.common.Direction
 import com.fenger.wanandroid.ui.common.DrawGradientText
+import com.fenger.wanandroid.ui.common.GradientTitleText
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
@@ -56,36 +57,59 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                             .height(60.dp)
                             .background(color = colorResource(id = R.color.blue))
                     ) {
+                        GradientTitleText(
+                            modifier = Modifier.weight(1f).align(Alignment.CenterVertically),
+                            index = 0,
+                            pagerState = pagerState,
+                        ) {
+                            jumpToPage(0, pagerState)
+                        }
+                        GradientTitleText(
+                            modifier = Modifier.weight(1f).align(Alignment.CenterVertically),
+                            index = 1,
+                            pagerState = pagerState,
+                        ) {
+                            jumpToPage(1, pagerState)
+                        }
                         DrawGradientText(
-                            text = stringResource(id = R.string.main_tab),
+                            text = stringResource(id = R.string.news_tab),
                             modifier = Modifier
                                 .weight(1f)
                                 .clickable {
-                                    jumpToPage(0, pagerState)
+                                    jumpToPage(2, pagerState)
                                 },
                             fromColor = Color.Red,
                             endColor = Color.Blue,
                             percent = pagerState.currentPageOffset,
                             direction = Direction.LTR,
-                            fontSize = 12.sp
+                            fontSize = 20.sp
                         )
-                        Text(stringResource(id = R.string.main_tab), modifier = Modifier.clickable {
-                            jumpToPage(0, pagerState)
-                        })
-                        Text(stringResource(id = R.string.tree_tab), modifier = Modifier.clickable {
-                            jumpToPage(1, pagerState)
-                        })
-                        Text(stringResource(id = R.string.news_tab), modifier = Modifier.clickable {
-                            jumpToPage(2, pagerState)
-                        })
-                        Text(
-                            stringResource(id = R.string.message_tab),
-                            modifier = Modifier.clickable {
-                                jumpToPage(3, pagerState)
-                            })
-                        Text(stringResource(id = R.string.life_tab), modifier = Modifier.clickable {
-                            jumpToPage(4, pagerState)
-                        })
+                        DrawGradientText(
+                            text = stringResource(id = R.string.message_tab),
+                            modifier = Modifier
+                                .weight(1f)
+                                .clickable {
+                                    jumpToPage(3, pagerState)
+                                },
+                            fromColor = Color.Red,
+                            endColor = Color.Blue,
+                            percent = pagerState.currentPageOffset,
+                            direction = Direction.LTR,
+                            fontSize = 20.sp
+                        )
+                        DrawGradientText(
+                            text = stringResource(id = R.string.life_tab),
+                            modifier = Modifier
+                                .weight(1f)
+                                .clickable {
+                                    jumpToPage(4, pagerState)
+                                },
+                            fromColor = Color.Red,
+                            endColor = Color.Blue,
+                            percent = pagerState.currentPageOffset,
+                            direction = Direction.LTR,
+                            fontSize = 20.sp
+                        )
                     }
                 }
             ) {

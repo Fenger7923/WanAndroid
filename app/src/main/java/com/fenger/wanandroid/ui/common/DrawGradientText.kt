@@ -25,6 +25,8 @@ import androidx.compose.ui.unit.sp
 /**
  * @author fengerzhang
  * @date 2021/10/14 20:00
+ *
+ * 渐变色字体
  */
 
 enum class Direction {
@@ -104,10 +106,10 @@ fun TestColorTrackText() {
 
         DrawGradientText(
             "1234567890",
-            fromColor = Color.Red,
-            endColor = Color.Blue,
-            percent = 1f,
-            direction = Direction.LTR,
+            fromColor = Color.Black,
+            endColor = Color.Red,
+            percent = 0.6f,
+            direction = Direction.RTL,
             fontSize = 25.sp
         )
 }
